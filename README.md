@@ -18,10 +18,11 @@ Application WEB qui permet d'explorer les données sur les prenoms donnés en Fr
 
 Prenoms/
 |- README.md
-|- requirements.txt  
+|- pyproject.toml 
+|- uv.lock
 |- data/
 |--- prenom.db      # Base de donnée SQLite
-|--- prenoms-2025nat.csv        # Fichier CSV de l'INSEE
+|--- prenoms-2025-nat.csv        # Fichier CSV de l'INSEE
 |- src/
 |--- build_db.py    # construction et connexion à la base
 |--- queries.py     # requête SQL vers la base 
@@ -31,14 +32,14 @@ Prenoms/
 
 ## Installation 
 
-Il faut Python 3.10 ou plus récent
+Il faut Python 3.11 ou plus récent
 
 ```bash
 git clone <adresse_depot>
 cd Prenoms
-python -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
+uv sync
+uv run python src/build_db.py
+uv run streamlit run src/app.py
 ```
 
 ## Lancement 
